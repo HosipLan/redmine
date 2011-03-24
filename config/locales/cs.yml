@@ -791,7 +791,7 @@ cs:
   permission_edit_own_messages: Upravit vlastní zprávy
   permission_delete_own_messages: Smazat vlastní zprávy
   label_user_activity: "Aktivita uživatele: %{value}"
-  label_updated_time_by: "Akutualizováno: %{author} před: %{age}"
+  label_updated_time_by: "Aktualizováno: %{author} před: %{age}"
   text_diff_truncated: '... Rozdílový soubor je zkrácen, protože jeho délka přesahuje max. limit.'
   setting_diff_max_lines_displayed: Maximální počet zobrazenách řádků rozdílů
   text_plugin_assets_writable: Možnost zápisu do adresáře plugin assets
