@@ -52,6 +52,11 @@ h1, h2, h3, h4 {
 #header h1 { 
 	margin-left: .3em; 
 	font-weight: bold;
+	font-size: 20px;
+}
+
+#header h1 a, #header h1 a:link, #header h1 a:hover, #header h1 a:focus {
+    color: #555;
 }
 
 h2, .wiki h1 {

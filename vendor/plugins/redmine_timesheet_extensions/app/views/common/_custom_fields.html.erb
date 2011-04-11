@@ -1,0 +1,22 @@
+<%
+  # TODO concettualmente questi metodi sono helper e andrebbero quindi definiti
+  #      nel file helper
+
+  # Aggiunge uno "0" davanti al numero passato se è minore di 10
+  def hours_min_string(number)
+    str = number.to_s
+    str = "0#{number}" if number < 10
+    str
+  end
+
+  # Restituisce un array di interi da 0 a 55 andando di 5 in 5
+  def minutes
+    mins = Array.new
+    (0..3).each { |i| mins << 15 * i}
+    mins
+  end
+%>
+
+<p><%= time_entry.text_field :billed_hours, :size => 6 %></p>
+
+<%= render :partial => "common/auto_completion" %>

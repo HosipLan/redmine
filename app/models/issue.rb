@@ -132,10 +132,10 @@ class Issue < ActiveRecord::Base
     
     if new_project && issue.project_id != new_project.id
       # delete issue relations
-      unless Setting.cross_project_issue_relations?
-        issue.relations_from.clear
-        issue.relations_to.clear
-      end
+#      unless Setting.cross_project_issue_relations?
+#        issue.relations_from.clear
+#        issue.relations_to.clear
+#      end
       # issue is moved to another project
       # reassign to the category with same name if any
       new_category = issue.category.nil? ? nil : new_project.issue_categories.find_by_name(issue.category.name)
@@ -145,9 +145,9 @@ class Issue < ActiveRecord::Base
         issue.fixed_version = nil
       end
       issue.project = new_project
-      if issue.parent && issue.parent.project_id != issue.project_id
-        issue.parent_issue_id = nil
-      end
+#      if issue.parent && issue.parent.project_id != issue.project_id
+#        issue.parent_issue_id = nil
+#      end
     end
     if new_tracker
       issue.tracker = new_tracker
@@ -324,9 +324,10 @@ class Issue < ActiveRecord::Base
     
     # Checks parent issue assignment
     if @parent_issue
-      if @parent_issue.project_id != project_id
-        errors.add :parent_issue_id, :not_same_project
-      elsif !new_record?
+#      if @parent_issue.project_id != project_id
+#        errors.add :parent_issue_id, :not_same_project
+#      elsif !new_record?
+      if !new_record?
         # moving an existing issue
         if @parent_issue.root_id != root_id
           # we can always move to another tree

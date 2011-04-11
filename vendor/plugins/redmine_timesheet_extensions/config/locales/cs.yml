@@ -1,0 +1,39 @@
+cs:
+  field_start_hour: Čas začátku
+  field_start_minute: ""
+  field_end_hour: Čas ukončení
+  field_end_minute: ""
+  field_billed_hours: Vyúčtovat hodiny
+
+  error_et_less_than_st: Čas ukončení musí být větší než čas začtku
+  error_et_mandatory_ifnot_hours: is mandatory if Hours field is empty
+  error_h_mb_grthan_zero: musí být větší než 0
+
+  timesheet_title: Přehled časů
+  timesheet_period: Interval
+  timesheet_date_from_label: Od
+  timesheet_date_to_label: Do
+  timesheet_users_label: Uživatelé
+  timesheet_showing_users: 'zobrazit čas pro: '
+  timesheet_permalink: '(Trvalý doakz)'
+  timesheet_group_by: Seskupit podle
+  timesheet_sort_by: Řadit podle
+  timesheet_week_of_year: Týden v roce
+
+  timesheet_groupby_day: Den
+  t_comment: Komentář
+
+  timesheet_billed_hours: Vyúčtovat hodiny
+  timesheet_total: Celkem
+
+  t_filters: Filtry
+  t_fields_to_include: Zahrnout pole
+
+  t_activities: Aktivity
+  t_projects: Projekty
+  t_users: Uživatelé
+  
+  t_javascript_warns:
+    st_after_et: Varování!!! Čas ukončení je menší než čas začátku
+    st_notinday: Varování!!! Čas začátku není v současném dnu
+    et_notinday: Varování!!! Čas počátku není v současném dnu
