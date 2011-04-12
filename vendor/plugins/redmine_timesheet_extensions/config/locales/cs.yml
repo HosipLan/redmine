@@ -9,6 +9,7 @@ cs:
   error_et_mandatory_ifnot_hours: is mandatory if Hours field is empty
   error_h_mb_grthan_zero: musí být větší než 0
 
+  timesheet_create_entry: Zaznamenat čas
   timesheet_title: Přehled časů
   timesheet_period: Interval
   timesheet_date_from_label: Od

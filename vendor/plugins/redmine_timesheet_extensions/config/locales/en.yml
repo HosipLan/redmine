@@ -9,6 +9,7 @@ en:
   error_et_mandatory_ifnot_hours: is mandatory if Hours field is empty
   error_h_mb_grthan_zero: must be grater than 0
 
+  timesheet_create_entry: Enter time
   timesheet_title: Timesheet
   timesheet_period: Period
   timesheet_date_from_label: From
