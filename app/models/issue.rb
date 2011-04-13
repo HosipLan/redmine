@@ -162,8 +162,11 @@ class Issue < ActiveRecord::Base
         issue.fixed_version = nil
       end
       issue.project = new_project
-      if issue.parent && issue.parent.project_id != issue.project_id
-        issue.parent_issue_id = nil
+      # keep the parent issue dude!
+      unless Setting.cross_project_issue_relations?
+        if issue.parent && issue.parent.project_id != issue.project_id
+          issue.parent_issue_id = nil
+        end
       end
     end
     if new_tracker
@@ -331,31 +334,33 @@ class Issue < ActiveRecord::Base
         errors.add_to_base I18n.t(:error_can_not_reopen_issue_on_closed_version)
       end
     end
-    
+
     # Checks that the issue can not be added/moved to a disabled tracker
     if project && (tracker_id_changed? || project_id_changed?)
       unless project.trackers.include?(tracker)
         errors.add :tracker_id, :inclusion
       end
     end
-    
+
     # Checks parent issue assignment
     if @parent_issue
-      if @parent_issue.project_id != project_id
-        errors.add :parent_issue_id, :not_same_project
-      elsif !new_record?
-        # moving an existing issue
-        if @parent_issue.root_id != root_id
-          # we can always move to another tree
-        elsif move_possible?(@parent_issue)
-          # move accepted inside tree
-        else
-          errors.add :parent_issue_id, :not_a_valid_parent
+      unless Setting.cross_project_issue_relations?
+        if @parent_issue.project_id != project_id
+          errors.add :parent_issue_id, :not_same_project
+        elsif !new_record?
+          # moving an existing issue
+          if @parent_issue.root_id != root_id
+            # we can always move to another tree
+          elsif move_possible?(@parent_issue)
+            # move accepted inside tree
+          else
+            errors.add :parent_issue_id, :not_a_valid_parent
+          end
         end
       end
     end
   end
-  
+
   # Set the done_ratio using the status if that setting is set.  This will keep the done_ratios
   # even if the user turns off the setting later
   def update_done_ratio_from_issue_status

@@ -130,7 +130,7 @@ class IssuesController < ApplicationController
   def new
     respond_to do |format|
       format.html { render :action => 'new', :layout => !request.xhr? }
-      format.js { render :partial => 'attributes' }
+      format.js { render :template => 'issues/new.rhtml', :layout => FALSE }
     end
   end
 
@@ -299,10 +299,14 @@ private
     else
       @issue = @project.issues.visible.find(params[:id])
     end
-    
+
     @issue.project = @project
     # Tracker must be set before custom field values
-    @issue.tracker ||= @project.trackers.find((params[:issue] && params[:issue][:tracker_id]) || params[:tracker_id] || :first)
+    begin
+      @issue.tracker ||= @project.trackers.find((params[:issue] && params[:issue][:tracker_id]) || params[:tracker_id] || :first)
+    rescue ActiveRecord::RecordNotFound
+      @issue.tracker ||= @project.trackers.find(:all).first;
+    end
     if @issue.tracker.nil?
       render_error l(:error_no_tracker_in_project)
       return false
